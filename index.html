@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExpenseFlow Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="app-card">
+      <div class="brand-bar">
+        <div class="brand-logo">
+          <img id="app-logo" class="logo-image" src="logo.jpg" alt="Provided Logo" />
+          <div>
+            <h1>ExpenseFlow</h1>
+            <p>Smart spending in a beautiful dashboard.</p>
+          </div>
+        </div>
+        <div class="brand-badge">3D Dashboard</div>
+      </div>
+
+      <div class="top-grid">
+        <section class="form-panel card">
+          <div class="panel-head">
+            <div>
+              <h2>Add Expense</h2>
+              <p>Save your spending in seconds.</p>
+            </div>
+            <span class="badge">New</span>
+          </div>
+
+          <form id="expense-form">
+            <div class="field-row">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="e.g. Coffee" required />
+            </div>
+            <div class="field-row double-row">
+              <div>
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" placeholder="00" min="0" required />
+              </div>
+              <div>
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Food, Travel" required />
+              </div>
+            </div>
+            <div class="field-row">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+            <div class="button-row">
+              <button type="submit" class="primary-btn">Add Expense</button>
+              <button type="button" id="show-insights" class="secondary-btn">Show Insights</button>
+            </div>
+          </form>
+          <div id="message" class="message hidden"></div>
+        </section>
+
+        <section class="stats-panel card">
+          <div class="panel-head">
+            <div>
+              <h2>Spend Summary</h2>
+              <p>Quick view of your total spending.</p>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-card blue-card">
+              <p>Total Expense</p>
+              <strong id="total-expense">0</strong>
+            </div>
+            <div class="summary-card violet-card">
+              <p>Fast insight</p>
+              <strong>Tap "Show Insights"</strong>
+            </div>
+          </div>
+
+          <div class="suggestion-card">
+            <div class="suggestion-head">
+              <div>
+                <h3>Suggestion Mode</h3>
+                <p>Get smart guidance from your spending habits.</p>
+              </div>
+              <span class="suggestion-icon">💡</span>
+            </div>
+            <ul id="top-suggestions" class="suggestion-list">
+              <li>Press "Show Insights" to display personalized suggestions.</li>
+            </ul>
+          </div>
+
+          <div class="small-info">
+            <span>Tip:</span> Keep your top category under control to improve savings.
+          </div>
+          <div class="button-row history-button-row">
+            <button type="button" id="show-history" class="secondary-btn">Expense History</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="table-section card hidden" id="history-section">
+        <div class="panel-head">
+          <div>
+            <h2>Expense History</h2>
+            <p>Open the list to view and remove expenses.</p>
+          </div>
+          <button type="button" id="hide-history" class="secondary-btn">Hide History</button>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="expenses-table-body">
+              <tr><td colspan="5" class="empty-state">Press "Expense History" to view your expenses.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="suggestion-note">
+          <p>Want personalized suggestions? Use "Show Insights" after viewing the history.</p>
+        </div>
+      </section>
+
+      <section class="insights-section card hidden" id="insights-card">
+        <div class="panel-head">
+          <div>
+            <h2>Insights</h2>
+            <p>See your best saving suggestions.</p>
+          </div>
+          <span class="badge insight-badge">Smart</span>
+        </div>
+        <div class="insight-grid">
+          <div class="insight-item">
+            <span>Highest</span>
+            <strong id="highest-category">-</strong>
+          </div>
+          <div class="insight-item">
+            <span>Lowest</span>
+            <strong id="lowest-category">-</strong>
+          </div>
+          <div class="insight-item total-insight">
+            <span>Total</span>
+            <strong id="insight-total">-</strong>
+          </div>
+        </div>
+        <div class="insight-list">
+          <h3>Suggestions</h3>
+          <ul id="suggestions-list"></ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="loading-overlay hidden" id="loading-overlay">
+    <div class="loader"></div>
+    <span>Processing...</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
